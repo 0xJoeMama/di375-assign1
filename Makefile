@@ -7,4 +7,4 @@ all: $(DOCS)
 	$(LATEX) $^
 
 clean:
-	rm -rf $(DOCS)
+	rm -rf $(DOCS) *.aux *.log
