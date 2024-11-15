@@ -5,7 +5,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{circuitikz}
-\setmainfont{NotoSans-Regular}
+\setmainfont{NotoSans}
 \geometry{margin=0.5in}
 \selectlanguage{greek}
 
@@ -97,7 +97,7 @@ $$
 \newpage
 
 \subsection{Ερώτημα 3}
-Σχεδιάστε το ολοκληρωμένο σχηματικό διάγραμμα CMOS διάγραμμα της συνάρτησης $Y=\overline{(A * B * C) + D}$ που θα περιέχει τόσο το pMOS όσο και το nMOS. \\
+Σχεδιάστε το ολοκληρωμένο σχηματικό διάγραμμα CMOS διάγραμμα της συνάρτησης $Y=\overline{(A * B * C) + D}$ που θα περιέχει τόσο το pMOS όσο και το nMOS.\\
 \textbf{Απάντηση: } \\
 
 Αρχικά παρατηρούμε ότι η $Y$ είναι το συμπλήρωμα της συνάρτησης $\bar{Y} = (A * B * C) + D$.
@@ -177,5 +177,25 @@ $$
     (3, -6) |- (Y)
     ;
   \end{circuitikz}
+\end{center}
+
+\newpage
+Γράψτε τον πίνακα αληθείας της συνάρτησης Y που υλοποιείται.
+
+\textbf{Απάντηση: } \\
+\begin{center}
+  \begin{tabular}{ | c | c | c | c | c | c | c | }
+    \hline $D$ & $A$ & $B$ & $C$ & $ABC$ & $ABC + D$ & $Y$ \\
+    \hline 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+           0 & 0 & 0 & 1 & 0 & 0 & 1 \\
+           0 & 0 & 1 & 0 & 0 & 0 & 1 \\
+           0 & 0 & 1 & 1 & 0 & 0 & 1 \\
+           0 & 1 & 0 & 0 & 0 & 0 & 1 \\
+           0 & 1 & 0 & 1 & 0 & 0 & 1 \\
+           0 & 1 & 1 & 0 & 0 & 0 & 1 \\
+           0 & 1 & 1 & 1 & 1 & 1 & 0 \\
+           1 & x & x & x & x & 1 & 0 \\
+      \hline
+  \end{tabular}
 \end{center}
 \end{document}

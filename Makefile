@@ -1,4 +1,4 @@
-LATEX=xelatex
+LATEX=lualatex
 DOCS=assign1_parta.pdf
 
 all: $(DOCS)
