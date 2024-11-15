@@ -244,13 +244,13 @@ $$
     \ctikzset{logic ports=ieee}
     \draw 
     (3, 0) node[ieeestd and port] (aandb) {}
-    (6, 0.6) node[ieeestd and port] (aandbandc) {}
-    (9, 1.2) node[ieeestd nor port] (orD) {}
-    (0, -0.3) node[label] (A) {$A$}
-    (0, 0.3) node[label] (B) {$B$}
-    (0, 0.9) node[label] (C) {$C$}
-    (0, 1.5) node[label] (D) {$D$}
-    (11, 1.2) node[label] (Y) {$Y$}
+    (6, 1) node[ieeestd and port] (aandbandc) {}
+    (9, 2) node[ieeestd nor port] (orD) {}
+    (aandb.in 2) ++ (-1, 0) node[label] (A) {$A$}
+    (aandb.in 1) ++ (-1, 0) node[label] (B) {$B$}
+    (aandbandc.in 1) ++ (-4, 0) node[label] (C) {$C$}
+    (orD.in 1) ++ (-7, 0) node[label] (D) {$D$} 
+    (orD.out) ++ (1, 0) node[label] (Y) {$Y$}
 
     (A) -- (aandb.in 2)
     (B) -- (aandb.in 1)
