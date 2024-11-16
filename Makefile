@@ -1,10 +1,10 @@
 LATEX=lualatex
-DOCS=assign1_parta.pdf
+DOCS=assign1_parta.pdf assign1_partB_1.pdf
 
 all: $(DOCS)
 
 %.pdf: %.tex
-	$(LATEX) $^
+	$(LATEX) $^ --shell-escape
 
 clean:
 	rm -rf $(DOCS) *.aux *.log
