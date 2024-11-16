@@ -261,4 +261,86 @@ $$
   \end{circuitikz}
 \end{center}
 
+Αν ενδιαφερόμασταν για την ελαχιστοποίηση των MOSFET transistors που χρησιμοποιούνται, μπορούμε να την πετύχουμε με τη χρήση της μεθόδου της φυσαλίδας καθώς και την ιδιότητα $A * B = \overline{\bar{A} + \bar{B}}$ όπως φαίνεται παρακάτω.
+
+\begin{center}
+  \begin{circuitikz}
+    \ctikzset{logic ports=ieee}
+    \draw 
+    (3, 0) node[ieeestd and port] (aandb) {}
+    (6, 1) node[ieeestd nor port] (aandbandc) {}
+    (9, 2) node[ieeestd nor port] (orD) {}
+    (aandb.in 2) ++ (-1, 0) node[label] (A) {$A$}
+    (aandb.in 1) ++ (-1, 0) node[label] (B) {$B$}
+    (aandbandc.in 1) ++ (-4, 0) node[label] (C) {$C$}
+    (orD.in 1) ++ (-7, 0) node[label] (D) {$D$} 
+    (orD.out) ++ (1, 0) node[label] (Y) {$Y$}
+    (aandbandc.bin 1) node[ocirc, left] {}
+    (aandbandc.bin 2) node[ocirc, left] {}
+
+    (A) -- (aandb.in 2)
+    (B) -- (aandb.in 1)
+    (aandb.out) |-  (aandbandc.in 2)
+    (C) -- (aandbandc.in 1)
+    (aandbandc.out) |- (orD.in 2)
+    (D) -- (orD.in 1)
+    (orD.out) -- (Y)
+    ;
+  \end{circuitikz}
+\end{center}
+
+Το οποίο μπορούμε να απλοποιήσουμε κι άλλο και να προκύψει το παρακάτω:
+
+\begin{center}
+  \begin{circuitikz}
+    \ctikzset{logic ports=ieee}
+    \draw 
+    (3, 0) node[ieeestd nand port] (aandb) {}
+    (6, 1) node[ieeestd nor port] (aandbandc) {}
+    (9, 2) node[ieeestd nor port] (orD) {}
+    (aandb.in 2) ++ (-1, 0) node[label] (A) {$A$}
+    (aandb.in 1) ++ (-1, 0) node[label] (B) {$B$}
+    (aandbandc.in 1) ++ (-4, 0) node[label] (C) {$C$}
+    (orD.in 1) ++ (-7, 0) node[label] (D) {$D$} 
+    (orD.out) ++ (1, 0) node[label] (Y) {$Y$}
+    (aandbandc.bin 1) node[ocirc, left] {}
+
+    (A) -- (aandb.in 2)
+    (B) -- (aandb.in 1)
+    (aandb.out) |-  (aandbandc.in 2)
+    (C) -- (aandbandc.in 1)
+    (aandbandc.out) |- (orD.in 2)
+    (D) -- (orD.in 1)
+    (orD.out) -- (Y)
+    ;
+  \end{circuitikz}
+\end{center}
+
+Στην αρχική υλοποίηση χρησιμοποιούσαμε τα παρακάτω:
+\begin{center}
+  \begin{tabular} { | c | c | }
+    \hline Πύλη & MOSFET transistors \\
+    \hline NOR & 4 \\
+          AND & 6 \\ 
+          AND & 6 \\
+    \hline Σύνολο & 16 \\
+    \hline
+  \end{tabular}
+\end{center}
+
+Στην παραπάνω υλοποίηση ωστόσο χρησιμοποιούμε:
+
+
+\begin{center}
+  \begin{tabular} { | c | c | }
+    \hline Πύλη & MOSFET transistors \\
+    \hline NOR & 4 \\
+          NOR & 4 \\ 
+          NAND & 4 \\
+          NOT & 2 \\
+    \hline Σύνολο & 14 \\
+    \hline
+  \end{tabular}
+\end{center}
+
 \end{document}
