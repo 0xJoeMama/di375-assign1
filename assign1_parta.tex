@@ -1,4 +1,4 @@
-\documentclass[draft]{article}
+\documentclass[]{article}
 \usepackage{geometry}
 \usepackage{fontspec}
 \usepackage{amsmath}
@@ -16,42 +16,42 @@
 \section{Μέρος Α}
 \subsection{Ερώτημα 1}
 Μία γραμμή internet έχει ταχύτητα 24Mbit/sec.
-Πόσους μη προσημασμένους αριθμούς των 32bit μπορεί να \\ μεταδώσει σε 35 sec, 
-αν επιπλέον εφαρμόζει και parity check (περιττό) για κάθε αριθμό που στέλνει; 
+Πόσους μη προσημασμένους αριθμούς των 32bit μπορεί να \\ μεταδώσει σε 35 sec,
+αν επιπλέον εφαρμόζει και parity check (περιττό) για κάθε αριθμό που στέλνει;
 
 \textbf{Απάντηση: }\\
 Παρατηρούμε αρχικά ότι για κάθε 32bit αριθμό, θα αποστέλονται στην πραγματικότητα 33bit αφού πρέπει να \\
 αποσταλείκαι ένα επιπλέον bit για το parity check. Συνεπώς το ερώτημα είναι πόσα πακέτα των 33bit μπορούν να αποσταλούν μέσω της γραμμής σε 35 sec.
 Αν $T$ είναι η ταχύτητα της γραμμής και $D$ ο αριθμός των bits που αποστέλονται ανά πακέτο, τότε ισχύει:
 \begin{align*}
-  D &= 33bits \\
-  T &= 24Mbit/sec
+	D & = 33bits     \\
+	T & = 24Mbit/sec
 \end{align*}
 
 Από την δεύτερη εξίσωση προκύπτει ότι:
 \begin{align*}
-  T &= 24Mbit/sec \\
-  T &= \frac{24 \cdot 1024}{1} \frac{kbit}{sec} = 24 \cdot 1024^2 \frac{bits}{sec}\\
+	T & = 24Mbit/sec                                                                  \\
+	T & = \frac{24 \cdot 1024}{1} \frac{kbit}{sec} = 24 \cdot 1024^2 \frac{bits}{sec} \\
 \end{align*}
 
 Συνεπώς στα 35sec μπορούν να μεταφερθούν:
 $$
-D_t = T \cdot 35sec = 24 \cdot 1024^2 \cdot 35 \ \frac{bits \cdot sec}{sec} = 880,803,840 bits
+	D_t = T \cdot 35sec = 24 \cdot 1024^2 \cdot 35 \ \frac{bits \cdot sec}{sec} = 880,803,840 bits
 $$
-όπου $D_t$ ο συνολικός όγκος δεδομένων που μπορεί να αποσταλεί σε $35sec$. 
+όπου $D_t$ ο συνολικός όγκος δεδομένων που μπορεί να αποσταλεί σε $35sec$.
 
-Τελικά, προκειμένου να δούμε πόσοι αριθμοί μπορούν να σταλούν αρκεί να 
+Τελικά, προκειμένου να δούμε πόσοι αριθμοί μπορούν να σταλούν αρκεί να
 διαιρέσουμε το $D_t$ με το μέγεθος του ενός πακέτου($33bits$):
 
 $$
-n = \frac{D_t}{D} = \frac{880,803,840 bits}{33 bits} = 26,691,025.\bar{45} \approx 26,691,025
+	n = \frac{D_t}{D} = \frac{880,803,840 bits}{33 bits} = 26,691,025.\bar{45} \approx 26,691,025
 $$
 
 Θα αποσταλούν συνεπώς 26,691,025 αριθμοί των 32bit με parity check.
 
 \subsection{Ερώτημα 2}
 Κάθε μια από τις παρακάτω πράξεις μπορεί να είναι σωστή σε ένα ή περισσότερα αριθμητικά συστήματα. \\
-Προσδιορίστε τις πιθανές βάσεις των αριθμητικών συστημάτων 
+Προσδιορίστε τις πιθανές βάσεις των αριθμητικών συστημάτων
 % TODO: description for how I solved(make 1 and 2 similar to 3)
 
 \textbf{Απάντηση: }
@@ -61,37 +61,37 @@ $$
 Αν λοιπόν $a$ η βάση του αριθμητικού συστήματος τότε για κάθε παράδειγμα ισχύει:
 \subsubsection{α}
 \begin{align*}
-  \frac{51_a}{3_a} &= 15_a \\
-  \frac{5_{10}a + 1_{10}}{3_{10}} &= 1_{10}a + 5_{10} \\
-  5a + 1 &= 3(a + 5) \\
-  5a + 1 &= 3a + 15 \\
-  2a &= 14 \\
-  a &= 7
+	\frac{51_a}{3_a}                & = 15_a             \\
+	\frac{5_{10}a + 1_{10}}{3_{10}} & = 1_{10}a + 5_{10} \\
+	5a + 1                          & = 3(a + 5)         \\
+	5a + 1                          & = 3a + 15          \\
+	2a                              & = 14               \\
+	a                               & = 7
 \end{align*}
 Συνεπώς το $\frac{51}{3} = 15$ σημαίνει ότι οι πράξεις γίνονται στο αριθμητικό σύστημα με βάση το $7$.
 
 \subsubsection{β}
 \begin{align*}
-  \frac{44_a}{4_a} &= 11_a\\ 
-  \frac{4_{10}a + 4_{10}}{4_{10}} &= a + 1_{10}\\
-  4a + 4 &= 4a + 4
+	\frac{44_a}{4_a}                & = 11_a       \\
+	\frac{4_{10}a + 4_{10}}{4_{10}} & = a + 1_{10} \\
+	4a + 4                          & = 4a + 4
 \end{align*}
 Το παραπάνω ισχύει $\forall a \in \mathbb{Z}$. Συνεπώς σε κάθε αριθμητικό σύστημα που μπορεί να χρησιμοποιήσει το ψηφίο $4$ ισχύει ότι $\frac{44}{4} = 11$.
 Για να μπορεί σε ένα σύστημα να αναπαρασταθεί το $4$ πρέπει η βάση του να είναι μεγαλύτερη του $4$. Συνεπώς το παραπάνω ισχύει για κάθε σύστημα μετά το πενταδικό.
 
 \subsubsection{γ}
 \begin{align*}
-  \sqrt{51} &= 6 \\
-  \sqrt{51_a} &= 6_a = 6_{10} \\
-  51_a &= 6_{10}^2 \\
-  5_{10}a + 1_{10} &= 36_{10} \\
-  5_{10}a &= 35_{10} \\
-  a &= \frac{35_{10}}{5_{10}} = 7_{10}
+	\sqrt{51}        & = 6                               \\
+	\sqrt{51_a}      & = 6_a = 6_{10}                    \\
+	51_a             & = 6_{10}^2                        \\
+	5_{10}a + 1_{10} & = 36_{10}                         \\
+	5_{10}a          & = 35_{10}                         \\
+	a                & = \frac{35_{10}}{5_{10}} = 7_{10}
 \end{align*}
 Παρατηρώ ότι επειδή το $6$ από μόνο του υπάρχει και έχει την ίδια τιμή σε όλα τα συστήματα με βάση $a \ge 7$ χρειάζεται να γίνουν κάποιες πράξεις σε διαφορετικά αριθμητικά συστήματα.
 Γνωρίζουμε ότι $6_a = 6_{10}$ συνεπώς μπορούμε να αλλάξουμε την βάση του $6$. Ύστερα, μπορούμε να υψώσουμε και τις δύο πλευρές της εξίσωσης στο τετράγωνο. Από την μια πλευρά το αποτέλεσμα είναι σε βάση $a$ ενώ από την άλλη είναι βάση $10$.
 Μπορούμε κανονικά να αναπτύξουμε το $6^2 = 36$ σε βάση $10$. Ύστερα αρκεί να γράψουμε και την αριστερή πλευρά σε βάση $10$. Τελικά με βασικές πράξεις μπορούμε να λύσουμε ως προς $a$ και βρίσκουμε $a = 7$.
-Συνεπώς η ισότητα αυτή ισχύει στο επταδικό σύστημα. \\ 
+Συνεπώς η ισότητα αυτή ισχύει στο επταδικό σύστημα. \\
 Σημαντική παρατήρηση είναι ότι το $6$ μπορεί να αναπαρασταθεί στο επταδικό σύστημα με 1 ψηφίο. Αν αυτό δεν ίσχυε τότε θα έπρεπε να απορρίψουμε το αποτέλεσμα μας, μιας που η αρχική ισότητα χρησιμοποιεί το ψηφίο $6$.
 
 \newpage
@@ -108,75 +108,75 @@ $$
 
 Τώρα εφαρμόζοντας κανόνες De-Morgan στο $Y$ προκύπτει το εξής:
 \begin{align*}
-  Y &= \overline{(A * B * C) + D} \\
-  Y &= \overline{(A * B * C)} * \bar{D}\\
-  Y &= (\bar{A} + \bar{B} + \bar{C}) * \bar{D}\\
+	Y & = \overline{(A * B * C) + D}              \\
+	Y & = \overline{(A * B * C)} * \bar{D}        \\
+	Y & = (\bar{A} + \bar{B} + \bar{C}) * \bar{D} \\
 \end{align*}
 
 Χρησιμοποιώντας την παραπάνω εξίσωση Boole μπορούμε να υλοποιήσουμε το pMos μέρος του κυκλώματος.
 Αυτό θα αποτελείται από 3 pMos συνδεδεμένα παράλληλα τα gates των οποίων θα είναι τα σήματα $A, B$ και $C$ το οποίο θα υλοποιεί μία OR πύλη.
 Στη συνέχεια αρκεί το παραπάνω υποκύκλωμα να συνδεθεί στη σειρά με ένα pMos το gate του οποίου είναι συνδεδεμένο με την είσοδο $D$.
 
-Βραχυκυκλώνοντας το pMos και το nMos κομμάτι του κυκλώματος προκύπτει η έξοδος $Y$. Ακολουθεί το \\ 
+Βραχυκυκλώνοντας το pMos και το nMos κομμάτι του κυκλώματος προκύπτει η έξοδος $Y$. Ακολουθεί το \\
 διάγραμμα που περιγράφεται παραπάνω:
 
 
 \begin{center}
-  \begin{circuitikz}
-    \draw 
-    (3,0) node[vcc] (vcc) {$V_{cc}$}
-    (3,-10) node[ground] (gnd) {}
-    (3,-11) node[label] () {$GND$}
-    (8, -5) node[label] (Y) {$Y$}
-    % nmos part
-    %% define mosfets
-    (4, -8) node[nmos, xscale=-1] (Dnmos) {}
-    (2, -9) node[nmos] (Cnmos) {}
-    (2, -8) node[nmos] (Bnmos) {}
-    (2, -7) node[nmos] (Anmos) {}
-    %% define inputs
-    (0, -7) node[label] (A) {$A$}
-    (0, -8) node[label] (B) {$B$}
-    (0, -9) node[label] (C) {$C$}
-    (6, -8) node[label] (D) {$D$}
-    %% define shorts
-    (A) -- (Anmos.G)
-    (B) -- (Bnmos.G)
-    (C) -- (Cnmos.G)
-    (D) -- (Dnmos.G)
-    (gnd) -| (Cnmos.S)
-    (gnd) -| (Dnmos.S)
-    (Anmos.D) |- (3, -6)
-    (Dnmos.D) |- (3, -6)
-    (3, -6) to[short, -*] (3, -5)
+	\begin{circuitikz}
+		\draw
+		(3,0) node[vcc] (vcc) {$V_{cc}$}
+		(3,-10) node[ground] (gnd) {}
+		(3,-11) node[label] () {$GND$}
+		(8, -5) node[label] (Y) {$Y$}
+		% nmos part
+		%% define mosfets
+		(4, -8) node[nmos, xscale=-1] (Dnmos) {}
+		(2, -9) node[nmos] (Cnmos) {}
+		(2, -8) node[nmos] (Bnmos) {}
+		(2, -7) node[nmos] (Anmos) {}
+		%% define inputs
+		(0, -7) node[label] (A) {$A$}
+		(0, -8) node[label] (B) {$B$}
+		(0, -9) node[label] (C) {$C$}
+		(6, -8) node[label] (D) {$D$}
+		%% define shorts
+		(A) -- (Anmos.G)
+		(B) -- (Bnmos.G)
+		(C) -- (Cnmos.G)
+		(D) -- (Dnmos.G)
+		(gnd) -| (Cnmos.S)
+		(gnd) -| (Dnmos.S)
+		(Anmos.D) |- (3, -6)
+		(Dnmos.D) |- (3, -6)
+		(3, -6) to[short, -*] (3, -5)
 
-    % pmos part
-    %% define mosfets
-    (3, -1) node[pmos] (Dpmos) {}
-    (3, -3) node[pmos] (Bpmos) {}
-    (0, -3) node[pmos] (Apmos) {}
-    (6, -3) node[pmos] (Cpmos) {}
-    %% define inputs
-    (1, -1) node[label] (D) {$D$}
-    (-2, -3) node[label] (A) {$A$}
-    (1, -3) node[label] (B) {$B$}
-    (4, -3) node[label] (C) {$C$}
-    %% define shorts
-    (vcc) -- (Dpmos.S)
-    (Dpmos.D) |- (Bpmos.S)
-    (Bpmos.S) -- (Apmos.S)
-    (Bpmos.S) |- (Cpmos.S)
-    (A) -- (Apmos.G)
-    (B) -- (Bpmos.G)
-    (C) -- (Cpmos.G)
-    (Apmos.D) -- (Bpmos.D)
-    (Cpmos.D) -- (Bpmos.D)
-    (Bpmos.D) |- (Y)
+		% pmos part
+		%% define mosfets
+		(3, -1) node[pmos] (Dpmos) {}
+		(3, -3) node[pmos] (Bpmos) {}
+		(0, -3) node[pmos] (Apmos) {}
+		(6, -3) node[pmos] (Cpmos) {}
+		%% define inputs
+		(1, -1) node[label] (D) {$D$}
+		(-2, -3) node[label] (A) {$A$}
+		(1, -3) node[label] (B) {$B$}
+		(4, -3) node[label] (C) {$C$}
+		%% define shorts
+		(vcc) -- (Dpmos.S)
+		(Dpmos.D) |- (Bpmos.S)
+		(Bpmos.S) -- (Apmos.S)
+		(Bpmos.S) |- (Cpmos.S)
+		(A) -- (Apmos.G)
+		(B) -- (Bpmos.G)
+		(C) -- (Cpmos.G)
+		(Apmos.D) -- (Bpmos.D)
+		(Cpmos.D) -- (Bpmos.D)
+		(Bpmos.D) |- (Y)
 
-    %% beautify
-    (3, -6) |- (Y)
-    ;
-  \end{circuitikz}
+		%% beautify
+		(3, -6) |- (Y)
+		;
+	\end{circuitikz}
 \end{center}
 
 \newpage
@@ -186,20 +186,20 @@ $$
 Σημαντική παρατήρηση είναι ότι αν η είσοδος $D$ είναι λογικό 1, όλες οι υπόλοιπες είσοδοι είναι αδιάφοροι όροι καθώς τότε η εξίσωση Boole παίρνει την μορφή $\overline{A * B * C + 1} = \bar{1} = 0$.
 Για την απλοποίηση λοιπόν του πίνακα αληθείας μπορούμε να χρησιμοποιήσουμε x για τους αδιάφορους όρους.
 \begin{center}
-  \begin{tabular}{ | c | c | c | c | c | c | c | }
-    \hline $D$ & $A$ & $B$ & $C$ & $ABC$ & $ABC + D$ & $Y$ \\
-    % TODO: maybe switch to don't care for A B and C as well
-    \hline 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
-           0 & 0 & 0 & 1 & 0 & 0 & 1 \\
-           0 & 0 & 1 & 0 & 0 & 0 & 1 \\
-           0 & 0 & 1 & 1 & 0 & 0 & 1 \\
-           0 & 1 & 0 & 0 & 0 & 0 & 1 \\
-           0 & 1 & 0 & 1 & 0 & 0 & 1 \\
-           0 & 1 & 1 & 0 & 0 & 0 & 1 \\
-           0 & 1 & 1 & 1 & 1 & 1 & 0 \\
-           1 & x & x & x & x & 1 & 0 \\
-      \hline
-  \end{tabular}
+	\begin{tabular}{ | c | c | c | c | c | c | c | }
+		\hline $D$ & $A$ & $B$ & $C$ & $ABC$ & $ABC + D$ & $Y$ \\
+		% TODO: maybe switch to don't care for A B and C as well
+		\hline 0   & 0   & 0   & 0   & 0     & 0         & 1   \\
+		0          & 0   & 0   & 1   & 0     & 0         & 1   \\
+		0          & 0   & 1   & 0   & 0     & 0         & 1   \\
+		0          & 0   & 1   & 1   & 0     & 0         & 1   \\
+		0          & 1   & 0   & 0   & 0     & 0         & 1   \\
+		0          & 1   & 0   & 1   & 0     & 0         & 1   \\
+		0          & 1   & 1   & 0   & 0     & 0         & 1   \\
+		0          & 1   & 1   & 1   & 1     & 1         & 0   \\
+		1          & x   & x   & x   & x     & 1         & 0   \\
+		\hline
+	\end{tabular}
 \end{center}
 
 
@@ -210,137 +210,137 @@ $$
 Το διάγραμμα της εξίσωσης στη μορφή αυτή είναι το παρακάτω:
 
 \begin{center}
-  \begin{circuitikz}
-    \ctikzset{logic ports=ieee}
-    \draw 
-    (3, 0) node[ieeestd and port] (aandb) {}
-    (6, 0.6) node[ieeestd and port] (aandbandc) {}
-    (9, 1.2) node[ieeestd or port] (orD) {}
-    (11, 1.2) node[ieeestd not port] (not) {}
-    (0, -0.3) node[label] (A) {$A$}
-    (0, 0.3) node[label] (B) {$B$}
-    (0, 0.9) node[label] (C) {$C$}
-    (0, 1.5) node[label] (D) {$D$}
-    (12, 1.2) node[label] (Y) {$Y$}
+	\begin{circuitikz}
+		\ctikzset{logic ports=ieee}
+		\draw
+		(3, 0) node[ieeestd and port] (aandb) {}
+		(6, 0.6) node[ieeestd and port] (aandbandc) {}
+		(9, 1.2) node[ieeestd or port] (orD) {}
+		(11, 1.2) node[ieeestd not port] (not) {}
+		(0, -0.3) node[label] (A) {$A$}
+		(0, 0.3) node[label] (B) {$B$}
+		(0, 0.9) node[label] (C) {$C$}
+		(0, 1.5) node[label] (D) {$D$}
+		(12, 1.2) node[label] (Y) {$Y$}
 
-    (A) -- (aandb.in 2)
-    (B) -- (aandb.in 1)
-    (aandb.out) |-  (aandbandc.in 2)
-    (C) -- (aandbandc.in 1)
-    (aandbandc.out) |- (orD.in 2)
-    (D) -- (orD.in 1)
-    (orD.out) -- (not)
-    (not.out) -- (Y)
-    ;
-  \end{circuitikz}
+		(A) -- (aandb.in 2)
+		(B) -- (aandb.in 1)
+		(aandb.out) |-  (aandbandc.in 2)
+		(C) -- (aandbandc.in 1)
+		(aandbandc.out) |- (orD.in 2)
+		(D) -- (orD.in 1)
+		(orD.out) -- (not)
+		(not.out) -- (Y)
+		;
+	\end{circuitikz}
 \end{center}
 
 Ωστόσο το παραπάνω μπορεί να απλοποιηθεί αν ενώσουμε την NOT με την OR για να δημιουργήσουμε μια πύλη NOR. Αυτό φαίνεται παρακάτω:
 
 \begin{center}
-  \begin{circuitikz}
-    \ctikzset{logic ports=ieee}
-    \draw 
-    (3, 0) node[ieeestd and port] (aandb) {}
-    (6, 1) node[ieeestd and port] (aandbandc) {}
-    (9, 2) node[ieeestd nor port] (orD) {}
-    (aandb.in 2) ++ (-1, 0) node[label] (A) {$A$}
-    (aandb.in 1) ++ (-1, 0) node[label] (B) {$B$}
-    (aandbandc.in 1) ++ (-4, 0) node[label] (C) {$C$}
-    (orD.in 1) ++ (-7, 0) node[label] (D) {$D$} 
-    (orD.out) ++ (1, 0) node[label] (Y) {$Y$}
+	\begin{circuitikz}
+		\ctikzset{logic ports=ieee}
+		\draw
+		(3, 0) node[ieeestd and port] (aandb) {}
+		(6, 1) node[ieeestd and port] (aandbandc) {}
+		(9, 2) node[ieeestd nor port] (orD) {}
+		(aandb.in 2) ++ (-1, 0) node[label] (A) {$A$}
+		(aandb.in 1) ++ (-1, 0) node[label] (B) {$B$}
+		(aandbandc.in 1) ++ (-4, 0) node[label] (C) {$C$}
+		(orD.in 1) ++ (-7, 0) node[label] (D) {$D$}
+		(orD.out) ++ (1, 0) node[label] (Y) {$Y$}
 
-    (A) -- (aandb.in 2)
-    (B) -- (aandb.in 1)
-    (aandb.out) |-  (aandbandc.in 2)
-    (C) -- (aandbandc.in 1)
-    (aandbandc.out) |- (orD.in 2)
-    (D) -- (orD.in 1)
-    (orD.out) -- (Y)
-    ;
-  \end{circuitikz}
+		(A) -- (aandb.in 2)
+		(B) -- (aandb.in 1)
+		(aandb.out) |-  (aandbandc.in 2)
+		(C) -- (aandbandc.in 1)
+		(aandbandc.out) |- (orD.in 2)
+		(D) -- (orD.in 1)
+		(orD.out) -- (Y)
+		;
+	\end{circuitikz}
 \end{center}
 
 Αν ενδιαφερόμασταν για την ελαχιστοποίηση των MOSFET transistors που χρησιμοποιούνται, μπορούμε να την πετύχουμε με τη χρήση της μεθόδου της φυσαλίδας καθώς και την ιδιότητα $A * B = \overline{\bar{A} + \bar{B}}$ όπως φαίνεται παρακάτω.
 
 \begin{center}
-  \begin{circuitikz}
-    \ctikzset{logic ports=ieee}
-    \draw 
-    (3, 0) node[ieeestd and port] (aandb) {}
-    (6, 1) node[ieeestd nor port] (aandbandc) {}
-    (9, 2) node[ieeestd nor port] (orD) {}
-    (aandb.in 2) ++ (-1, 0) node[label] (A) {$A$}
-    (aandb.in 1) ++ (-1, 0) node[label] (B) {$B$}
-    (aandbandc.in 1) ++ (-4, 0) node[label] (C) {$C$}
-    (orD.in 1) ++ (-7, 0) node[label] (D) {$D$} 
-    (orD.out) ++ (1, 0) node[label] (Y) {$Y$}
-    (aandbandc.bin 1) node[ocirc, left] {}
-    (aandbandc.bin 2) node[ocirc, left] {}
+	\begin{circuitikz}
+		\ctikzset{logic ports=ieee}
+		\draw
+		(3, 0) node[ieeestd and port] (aandb) {}
+		(6, 1) node[ieeestd nor port] (aandbandc) {}
+		(9, 2) node[ieeestd nor port] (orD) {}
+		(aandb.in 2) ++ (-1, 0) node[label] (A) {$A$}
+		(aandb.in 1) ++ (-1, 0) node[label] (B) {$B$}
+		(aandbandc.in 1) ++ (-4, 0) node[label] (C) {$C$}
+		(orD.in 1) ++ (-7, 0) node[label] (D) {$D$}
+		(orD.out) ++ (1, 0) node[label] (Y) {$Y$}
+		(aandbandc.bin 1) node[ocirc, left] {}
+		(aandbandc.bin 2) node[ocirc, left] {}
 
-    (A) -- (aandb.in 2)
-    (B) -- (aandb.in 1)
-    (aandb.out) |-  (aandbandc.in 2)
-    (C) -- (aandbandc.in 1)
-    (aandbandc.out) |- (orD.in 2)
-    (D) -- (orD.in 1)
-    (orD.out) -- (Y)
-    ;
-  \end{circuitikz}
+		(A) -- (aandb.in 2)
+		(B) -- (aandb.in 1)
+		(aandb.out) |-  (aandbandc.in 2)
+		(C) -- (aandbandc.in 1)
+		(aandbandc.out) |- (orD.in 2)
+		(D) -- (orD.in 1)
+		(orD.out) -- (Y)
+		;
+	\end{circuitikz}
 \end{center}
 
 Το οποίο μπορούμε να απλοποιήσουμε κι άλλο και να προκύψει το παρακάτω:
 
 \begin{center}
-  \begin{circuitikz}
-    \ctikzset{logic ports=ieee}
-    \draw 
-    (3, 0) node[ieeestd nand port] (aandb) {}
-    (6, 1) node[ieeestd nor port] (aandbandc) {}
-    (9, 2) node[ieeestd nor port] (orD) {}
-    (aandb.in 2) ++ (-1, 0) node[label] (A) {$A$}
-    (aandb.in 1) ++ (-1, 0) node[label] (B) {$B$}
-    (aandbandc.in 1) ++ (-4, 0) node[label] (C) {$C$}
-    (orD.in 1) ++ (-7, 0) node[label] (D) {$D$} 
-    (orD.out) ++ (1, 0) node[label] (Y) {$Y$}
-    (aandbandc.bin 1) node[ocirc, left] {}
+	\begin{circuitikz}
+		\ctikzset{logic ports=ieee}
+		\draw
+		(3, 0) node[ieeestd nand port] (aandb) {}
+		(6, 1) node[ieeestd nor port] (aandbandc) {}
+		(9, 2) node[ieeestd nor port] (orD) {}
+		(aandb.in 2) ++ (-1, 0) node[label] (A) {$A$}
+		(aandb.in 1) ++ (-1, 0) node[label] (B) {$B$}
+		(aandbandc.in 1) ++ (-4, 0) node[label] (C) {$C$}
+		(orD.in 1) ++ (-7, 0) node[label] (D) {$D$}
+		(orD.out) ++ (1, 0) node[label] (Y) {$Y$}
+		(aandbandc.bin 1) node[ocirc, left] {}
 
-    (A) -- (aandb.in 2)
-    (B) -- (aandb.in 1)
-    (aandb.out) |-  (aandbandc.in 2)
-    (C) -- (aandbandc.in 1)
-    (aandbandc.out) |- (orD.in 2)
-    (D) -- (orD.in 1)
-    (orD.out) -- (Y)
-    ;
-  \end{circuitikz}
+		(A) -- (aandb.in 2)
+		(B) -- (aandb.in 1)
+		(aandb.out) |-  (aandbandc.in 2)
+		(C) -- (aandbandc.in 1)
+		(aandbandc.out) |- (orD.in 2)
+		(D) -- (orD.in 1)
+		(orD.out) -- (Y)
+		;
+	\end{circuitikz}
 \end{center}
 
 Στην αρχική υλοποίηση χρησιμοποιούσαμε τα παρακάτω:
 \begin{center}
-  \begin{tabular} { | c | c | }
-    \hline Πύλη & MOSFET transistors \\
-    \hline NOR & 4 \\
-          AND & 6 \\ 
-          AND & 6 \\
-    \hline Σύνολο & 16 \\
-    \hline
-  \end{tabular}
+	\begin{tabular} { | c | c | }
+		\hline Πύλη   & MOSFET transistors \\
+		\hline NOR    & 4                  \\
+		AND           & 6                  \\
+		AND           & 6                  \\
+		\hline Σύνολο & 16                 \\
+		\hline
+	\end{tabular}
 \end{center}
 
 Στην παραπάνω υλοποίηση ωστόσο χρησιμοποιούμε:
 
 
 \begin{center}
-  \begin{tabular} { | c | c | }
-    \hline Πύλη & MOSFET transistors \\
-    \hline NOR & 4 \\
-          NOR & 4 \\ 
-          NAND & 4 \\
-          NOT & 2 \\
-    \hline Σύνολο & 14 \\
-    \hline
-  \end{tabular}
+	\begin{tabular} { | c | c | }
+		\hline Πύλη   & MOSFET transistors \\
+		\hline NOR    & 4                  \\
+		NOR           & 4                  \\
+		NAND          & 4                  \\
+		NOT           & 2                  \\
+		\hline Σύνολο & 14                 \\
+		\hline
+	\end{tabular}
 \end{center}
 
 \end{document}
