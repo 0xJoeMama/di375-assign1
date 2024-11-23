@@ -11,5 +11,5 @@ end entity majority;
 
 architecture dataflow of majority is
 begin
-  y <= (a and (b or c)) or (b and c);
+  y <= (a nand (b or c)) nand (b nand c);
 end architecture dataflow;
