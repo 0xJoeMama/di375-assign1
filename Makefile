@@ -10,7 +10,7 @@ all: $(DOCS)
 %.pdf: %.tex
 	$(LATEX) $(LATEX_FLAGS) $^ 
 
-$(TMP)/assign_1.vhd: assign_1/majority.vhdl | $(TMP)
+$(TMP)/assign_1.vhd: assign_1/majority_old.vhdl | $(TMP)
 	cp $^ $@
 
 $(TMP)/assign_1_tb.vhd: assign_1/majority_tb.vhdl | $(TMP)
@@ -23,5 +23,5 @@ zip: $(ZIP_CONTENTS)
 	zip -j $(ZIP) $^
 
 clean:
-	rm -rf $(DOCS) *.aux *.log _minted* $(TMP) $(ZIP)
+	rm -rf $(DOCS) *.aux *.log _minted* $(TMP) *.zip
 
