@@ -49,7 +49,8 @@ begin
         -- make sure res is 0 otherwise something went incredibly bad
         assert res = '0' report "Bad result" severity FAILURE;
       else
-        -- otherwise we are either 3 = 011 or 5 = 101 or 6 = 110 or 7 = 111 which all have at least 2 1s in them so that means majority should be one
+        -- otherwise we are either 3 = 011 or 5 = 101 or 6 = 110 or 7 = 111 
+        -- which all have at least 2 1s in them so that means majority should be one
         -- make sure res is 1 otherwise something went incredibly bad
         assert res = '1' report "Bad result" severity FAILURE;
       end if;
