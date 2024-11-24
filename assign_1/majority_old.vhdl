@@ -10,6 +10,6 @@ end entity majority;
 
 architecture Dataflow of majority is
 begin
-  -- newer implementation of the circuit using NAND and OR
-  y <= (a nand (b or c)) nand (b nand c);
+  -- initial implementation of the circuit using AND and OR instead of NAND and OR
+  y <= (a and (b or c)) or (b and c);
 end architecture Dataflow;

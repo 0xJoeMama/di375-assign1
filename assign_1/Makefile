@@ -1,5 +1,5 @@
 DIR=build
-SRC= majority.vhdl majority_tb.vhdl
+SRC= majority_old.vhdl majority_tb.vhdl
 ENTITY=majority_tb
 
 all: clean make
