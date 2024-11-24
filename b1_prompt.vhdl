@@ -7,7 +7,7 @@ entity Lab2_1 is
   a, b, c: in STD_LOGIC;
   y, z: out STD_LOGIC
   );
-end Lab2_1;
+end entity Lab2_1;
 
 architecture synth of Lab2_1 is
 begin
