@@ -45,7 +45,7 @@
 \begin{align*}
 	Y & = (A + \bar{A}) * (\bar{B} * \bar{C} + B * C + \bar{A}) \\
 	  & = 1 * (\bar{B} * \bar{C} + B * C + \bar{A})             \\
-	  & = \bar{B} * \bar{C} + B * C + \bar{A}                   \\
+	  & = \bar{B} * \bar{C} + B * C + \bar{A}
 \end{align*}
 
 Αρκεί τέλος να απλοποιήσουμε την έκφραση $\bar{B} * \bar{C} + B * C$. Για να το κάνουμε αυτό μπορούμε να χρησιμοποιήσουμε πίνακα αληθείας:
@@ -63,13 +63,13 @@
 Παρατηρούμε ότι η στήλη του $\bar{B} * \bar{C} + B * C$ είναι πανομοιότυπη με αυτή του XNOR. Συνεπώς το $Y$ μπορεί να γραφτεί και ως εξής:
 \begin{align*}
 	Y & = \bar{B} * \bar{C} + B * C + \bar{A} \\
-	  & = \overline{B \oplus C} + \bar{A}     \\
+	  & = \overline{B \oplus C} + \bar{A}
 \end{align*}
 
 Μπορούμε τέλος χρησιμοποιώντας κανόνες De Morgan να απλοποιήσουμε ακόμη περισσότερο την συνάρτηση $Y$:
 \begin{align*}
 	Y & = \overline{B \oplus C} + \bar{A} \\
-    & = \overline{A * (B \oplus C)}
+	  & = \overline{A * (B \oplus C)}
 \end{align*}
 
 Αυτό μειώνει τον αριθμό των πυλών που χρησιμοποιούμε κατά 1(ο αντιστροφέας του $A$).
@@ -89,7 +89,7 @@
 Γίνεται λοιπόν εμφανές ότι:
 \begin{align*}
 	Z & = A * \bar{B} + \bar{A} * B \\
-	  & = A \oplus B                \\
+	  & = A \oplus B
 \end{align*}
 
 \section{Λογικά Διαγράμματα}
@@ -160,10 +160,10 @@
 		(xor.in 1) ++ (-2, 0) node[ocirc, label=$A$, label distance = 2pt] (A) {}
 		(xor.in 2) ++ (-2, 0) node[ocirc, label=$B$, label distance = 2pt] (B) {}
 		(B) ++ (0, -1) node[ocirc, label=$C$, label distance = 2pt] (C) {}
-		(xor) ++ (0, -2) node[ieeestd xnor port] (xnor) {}
+		(xor) ++ (0, -2) node[ieeestd xor port] (xnor) {}
 		(xnor.out) ++ (2, 1) node[ieeestd nand port] (or) {}
 
-    (or.out) node[ocirc, label=$Y$] (Y) {}
+		(or.out) ++ (1, 0) node[ocirc, label=$Y$] (Y) {}
 		(Y) ++ (0, 1) node[ocirc, label=$Z$] (Z) {}
 
 		(xor.out) |- (Z)
@@ -173,6 +173,7 @@
 		(xor.in 2) |- (B)
 		(C) |- (xnor.in 2)
 		(B) ++ (1, 0) |- (xnor.in 1)
+		(or.out) -- (Y)
 		;
 	\end{circuitikz}
 \end{center}
@@ -183,15 +184,15 @@
 Χρησιμοποιώντας τις εξισώσεις Boole μπορούμε να φτιάξουμε και τον πίνακα αληθείας των συναρτήσεων:
 \begin{center}
 	\begin{tabular}{|c|c|c|c|c|c|c|}
-		\hline \rule{0pt}{11pt} $A$ & $B$ & $C$ & $\bar{A}$ & $\overline{B \oplus C}$ & $Y = \overline{B \oplus C} + \bar{A}$ & $Z = A \oplus B$ \\
-		\hline 0                    & 0   & 0   & 1         & 1                       & 1                                     & 0                \\
-		0                           & 0   & 1   & 1         & 0                       & 1                                     & 0                \\
-		0                           & 1   & 0   & 1         & 0                       & 1                                     & 1                \\
-		0                           & 1   & 1   & 1         & 1                       & 1                                     & 1                \\
-		1                           & 0   & 0   & 0         & 1                       & 1                                     & 1                \\
-		1                           & 0   & 1   & 0         & 0                       & 0                                     & 1                \\
-		1                           & 1   & 0   & 0         & 0                       & 0                                     & 0                \\
-		1                           & 1   & 1   & 0         & 1                       & 1                                     & 0                \\
+		\hline \rule{0pt}{11pt} $A$ & $B$ & $C$ & $B \oplus C$ & $(B \oplus C) * A$ & $Y = \overline{(B \oplus C) * A}$ & $Z = A \oplus B$ \\
+		\hline 0                    & 0   & 0   & 0            & 0                  & 1                                 & 0                \\
+		0                           & 0   & 1   & 1            & 0                  & 1                                 & 0                \\
+		0                           & 1   & 0   & 1            & 0                  & 1                                 & 1                \\
+		0                           & 1   & 1   & 0            & 0                  & 1                                 & 1                \\
+		1                           & 0   & 0   & 0            & 0                  & 1                                 & 1                \\
+		1                           & 0   & 1   & 1            & 1                  & 0                                 & 1                \\
+		1                           & 1   & 0   & 1            & 1                  & 0                                 & 0                \\
+		1                           & 1   & 1   & 0            & 0                  & 1                                 & 0                \\
 		\hline
 	\end{tabular}
 \end{center}
