@@ -13,24 +13,24 @@
 \begin{document}
 
 \author{Πλαστήρας Πέτρος}
-\title{Εργαστήριο Λογικής Σχεδίασης - Εργασία 1}
+\title{Εργαστήριο Λογικής Σχεδίασης - Εργασία 1 - Μερός Β.1}
 \date{25 Νοεμβρίου 2024}
 \maketitle
 
-\section{Μέρος Β.1}
-Σχεδιάστε ένα σχηματικό διάγραμμα του αρχικού κυκλώματος που περιγράφεται από
-τον ακόλουθο κώδικα VHDL. Στη συνέχεια, απλουστεύστε το διάγραμμα ώστε να
-περιέχει όσο το δυνατόν λιγότερες πύλες. Τέλος, δημιουργήστε τον πίνακα αληθείας.
+Σχεδιάστε ένα σχηματικό διάγραμμα του αρχικού κυκλώματος που
+περιγράφεται από τον ακόλουθο κώδικα VHDL, με πύλες 2 εισόδων. Στη συνέχεια,
+απλουστεύστε (αν γίνεται) το διάγραμμα ώστε να περιέχει όσο το δυνατόν λιγότερες
+πύλες (πάντα 2 εισόδων). Τέλος, δημιουργήστε τον πίνακα αληθείας.
 
-\inputminted{vhdl}{assign1_partB_1.vhdl}
+\inputminted{vhdl}{./b1_prompt.vhdl}
 
-\textbf{Απάντηση: } Αρχικά παρατηρούμε από τον ορισμό της οντότητας ότι το
-κύκλωμα έχει 3 εισόδους(a, b και c) και 2 εξόδους(y, z).
+\section{Εξισώσεις Boole}
+Αρχικά παρατηρούμε από τον ορισμό της οντότητας ότι το κύκλωμα έχει 3 εισόδους(a, b και c) και 2 εξόδους(y, z).
 Από την αρχιτεκτονική της οντότητας μπορούμε να βρούμε τις εξισώσεις Boole των εξόδων.
-Συγκεκριμένα, παρατηρώντας τις τιμές που παίρνουν τα σήματα y και z προκύπτει το διάγραμμα \ref{fig:init}.
-
+Συγκεκριμένα, παρατη- ρώντας τις τιμές που παίρνουν τα σήματα y και z προκύπτουν οι παρακάτω εξισώσεις:
 \begin{align*}
-	Y & = A * \bar{B} * \bar{C} + A * B * C + \bar{A} \\
+	Y & = ((A * \bar{B}) * \bar{C}) + ((A * B) * C) + \bar{A} \\
+	  & = A * \bar{B} * \bar{C} + A * B * C + \bar{A}         \\
 	Z & = A * \bar{B} + \bar{A} * B
 \end{align*}
 
@@ -41,10 +41,11 @@
 	Y & = A * (\bar{B} * \bar{C} + B * C) + \bar{A}
 \end{align*}
 
-Στη συνέχεια μπορούμε να χρησιμοποιήσουμε το θεώρημα της κάλυψης:
+Στη συνέχεια μπορούμε να χρησιμοποιήσουμε το θεώρημα της επιμεριστικότητας:
 \begin{align*}
-	Y & = A * (\bar{B} * \bar{C} + B * C) + \bar{A} \\
-	Y & = \bar{B} * \bar{C} + B * C + \bar{A}
+	Y & = (A + \bar{A}) * (\bar{B} * \bar{C} + B * C + \bar{A}) \\
+	  & = 1 * (\bar{B} * \bar{C} + B * C + \bar{A})             \\
+	  & = \bar{B} * \bar{C} + B * C + \bar{A}                   \\
 \end{align*}
 
 Αρκεί τέλος να απλοποιήσουμε την έκφραση $\bar{B} * \bar{C} + B * C$. Για να το κάνουμε αυτό μπορούμε να χρησιμοποιήσουμε πίνακα αληθείας:
@@ -62,8 +63,16 @@
 Παρατηρούμε ότι η στήλη του $\bar{B} * \bar{C} + B * C$ είναι πανομοιότυπη με αυτή του XNOR. Συνεπώς το $Y$ μπορεί να γραφτεί και ως εξής:
 \begin{align*}
 	Y & = \bar{B} * \bar{C} + B * C + \bar{A} \\
-	Y & = \overline{B \oplus C} + \bar{A}     \\
+	  & = \overline{B \oplus C} + \bar{A}     \\
 \end{align*}
+
+Μπορούμε τέλος χρησιμοποιώντας κανόνες De Morgan να απλοποιήσουμε ακόμη περισσότερο την συνάρτηση $Y$:
+\begin{align*}
+	Y & = \overline{B \oplus C} + \bar{A} \\
+    & = \overline{A * (B \oplus C)}
+\end{align*}
+
+Αυτό μειώνει τον αριθμό των πυλών που χρησιμοποιούμε κατά 1(ο αντιστροφέας του $A$).
 
 Για την απλοποίηση του $Z$ αντίστοιχα θα χρησιμοποιήσουμε τον πίνακα αληθείας:
 \begin{center}
@@ -80,98 +89,109 @@
 Γίνεται λοιπόν εμφανές ότι:
 \begin{align*}
 	Z & = A * \bar{B} + \bar{A} * B \\
-	Z & = A \oplus B
+	  & = A \oplus B                \\
 \end{align*}
 
-Σχηματικά μπορούμε να υλοποιήσουμε τις εξισώσεις αυτές με τον παρακάτω τρόπο:
-\begin{figure}
-	\begin{center}
-		\begin{circuitikz}
-			\ctikzset{logic ports=ieee}
-			\draw
-			(0, 0) node[ocirc, label=$C$, label distance = 2pt] (C) {}
-			(1, 0) node[ocirc, label=$B$, label distance = 2pt] (B) {}
-			(2, 0) node[ocirc, label=$A$, label distance = 2pt] (A) {}
-			(8, -9) node[rotate=270, ieeestd or port, number inputs = 3] (res) {}
-			(res.bin 1) node[ocirc, above] (notIn) {}
-			(res.in 2) ++ (-4, 5) node[ieeestd and port, number inputs = 3] (abc) {}
-			(res.in 2) ++ (-4, 7) node[ieeestd and port, number inputs = 3] (anotbnotc) {}
-			(anotbnotc.bin 2) node[ocirc, left] (notB) {}
-			(anotbnotc.bin 1) node[ocirc, left] (notC) {}
-			(res.out) node[ocirc] (Y) {}
-			(Y.south) ++ (0, -0.2) node[label] {$Y$}
-
-			(6, -9) node[rotate=270, ieeestd or port] (zOut) {}
-			(zOut.out) node[ocirc] (Z) {}
-			(abc) ++ (0, -2) node[ieeestd and port] (aandnotb) {}
-			(aandnotb.bin 2) node[ocirc, left] (notBAg) {}
-			(aandnotb) ++ (0, -2) node[ieeestd and port] (notaandb) {}
-			(notaandb.bin 1) node[ocirc, left] (notAAg) {}
-			(Z.south) ++ (0, -0.2) node[label] {$Z$}
-
-
-			(A) |- (notAAg)
-			(B) |- (notaandb.in 2)
-			(notaandb.out) -| (zOut.in 2)
-			(aandnotb.out) -| (zOut.in 1)
-			(B) |- (notBAg)
-			(A) |- (aandnotb.in 1)
-			(B) |- (abc.in 2)
-			(C) |- (abc.in 1)
-			(A) |- (abc.in 3)
-			(B) |- (anotbnotc.in 2)
-			(C) |- (anotbnotc.in 1)
-			(A) |- (anotbnotc.in 3)
-			(anotbnotc.out) -| (res.in 2)
-			(abc.out) -| (res.in 3)
-			(A) -| (notIn)
-			;
-		\end{circuitikz}
-
-	\end{center}
-	\caption{Σχηματικό διάγραμμα της αρχικής εξίσωσης}
-	\label{fig:init}
-\end{figure}
-
-\begin{figure}
-	\begin{center}
-		\begin{circuitikz}
-			\draw
-			(0, 0) node[ieeestd xor port] (xor) {}
-			(xor.in 1) ++ (-2, 0) node[ocirc, label=$A$, label distance = 2pt] (A) {}
-			(xor.in 2) ++ (-2, 0) node[ocirc, label=$B$, label distance = 2pt] (B) {}
-			(B) ++ (0, -1) node[ocirc, label=$C$, label distance = 2pt] (C) {}
-			(xor) ++ (0, -2) node[ieeestd xnor port] (xnor) {}
-			(xnor.out) ++ (2, 1) node[ieeestd or port] (or) {}
-			(or.bin 1) node[ocirc, left] (notA) {}
-
-			(or.out) node[ocirc, label=$Y$] (Y) {}
-			(Y) ++ (0, 1) node[ocirc, label=$Z$] (Z) {}
-
-			(xor.out) |- (Z)
-			(A) ++ (1.5, 0) |- (or.in 1)
-			(xnor.out) |- (or.in 2)
-			(xor.in 1) |- (A)
-			(xor.in 2) |- (B)
-			(C) |- (xnor.in 2)
-			(B) ++ (1, 0) |- (xnor.in 1)
-			;
-		\end{circuitikz}
-	\end{center}
-	\caption{Σχηματικό διάγραμμα απλοποιημένης εξίσωσης}
-\end{figure}
-
+\section{Λογικά Διαγράμματα}
+Η αρχική μη απλοποιημένη εξίσωση αντιστοιχεί στο παρακάτω λογικό κύκλωμα:
+% TODO: replace with AND-2 and OR-2 because vasilopoulos changed the prompt last moment
 \begin{center}
-	\begin{tabular}{|c|c|c|c|c|}
-		\hline \rule{0pt}{11pt} $A$ & $B$ & $C$ & $Y = \overline{B \oplus C} + \bar{A}$ & $Z = A \oplus B$ \\
-		\hline 0                    & 0   & 0   & 1                                     & 0                \\
-		0                           & 0   & 1   & 1                                     & 0                \\
-		0                           & 1   & 0   & 1                                     & 1                \\
-		0                           & 1   & 1   & 1                                     & 1                \\
-		1                           & 0   & 0   & 1                                     & 1                \\
-		1                           & 0   & 1   & 0                                     & 1                \\
-		1                           & 1   & 0   & 0                                     & 0                \\
-		1                           & 1   & 1   & 1                                     & 0                \\
+	\begin{circuitikz}
+		\ctikzset{logic ports=ieee}
+		\draw
+		(-2, 0) node[ocirc, label=$C$, label distance = 2pt] (C) {}
+		(0, 0) node[ocirc, label=$B$, label distance = 2pt] (B) {}
+		(2, 0) node[ocirc, label=$A$, label distance = 2pt] (A) {}
+
+		(A) ++ (1, -1) node[rotate=270, ieeestd not port] (notA) {}
+		(B) ++ (1, -1) node[rotate=270, ieeestd not port] (notB) {}
+		(C) ++ (1, -1) node[rotate=270, ieeestd not port] (notC) {}
+
+		(A) |- (notA.in)
+		(B) |- (notB.in)
+		(C) |- (notC.in)
+
+		(10, -10) node[rotate=270, ieeestd or port] (res) {}
+
+		% Y output and label
+		(res.out) node[ocirc] (Y) {}
+		(Y.south) ++ (0, -0.2) node[label] {$Y$}
+
+		% Z output and label
+		(6, -10) node[rotate=270, ieeestd or port] (zOut) {}
+		(zOut.out) node[ocirc] (Z) {}
+		(Z.south) ++ (0, -0.2) node[label] {$Z$}
+
+		% output of parts of Z and OR
+		(zOut.in 1) ++ (-2, 1) node[ieeestd and port] (BandnotA) {}
+		(BandnotA) ++ (0, 2) node[ieeestd and port] (AandnotB) {}
+		(AandnotB.out) -| (zOut.in 1)
+		(BandnotA.out) -| (zOut.in 2)
+
+		% first part of Y
+		(AandnotB.out) ++ (2, 1) node[ieeestd and port] (ABbarCbar) {}
+		(notC) |- (ABbarCbar.in 1)
+		(AandnotB.out) -| (ABbarCbar.in 2)
+		(ABbarCbar) ++ (-3, 1) node[ieeestd and port] (AB) {}
+		(ABbarCbar) ++ (0, 2) node[ieeestd and port] (ABC) {}
+		(ABbarCbar.out) ++ (1, -2) node[rotate=270, ieeestd or port] (halfY) {}
+
+		(notA.out) |- (BandnotA.in 1)
+		(notB.out) |- (AandnotB.in 1)
+		(B) |- (BandnotA.in 2)
+		(A) |- (AandnotB.in 2)
+		(A) |- (AB.in 1)
+		(B) |- (AB.in 2)
+		(C) |- (ABC.in 1)
+		(halfY.out) -| (res.in 2)
+		(ABbarCbar.out) -| (halfY.in 2)
+		(ABC.out) -| (halfY.in 1)
+		(notA.out) -| (res.in 1)
+		(AB.out) -| (ABC.in 2)
+		;
+	\end{circuitikz}
+\end{center}
+
+Αντίστοιχα η τελική μορφή των εξισώσεων αντιστοιχεί στο παρακάτω λογικό κύκλωμα:
+\begin{center}
+	\begin{circuitikz}
+		\draw
+		(0, 0) node[ieeestd xor port] (xor) {}
+		(xor.in 1) ++ (-2, 0) node[ocirc, label=$A$, label distance = 2pt] (A) {}
+		(xor.in 2) ++ (-2, 0) node[ocirc, label=$B$, label distance = 2pt] (B) {}
+		(B) ++ (0, -1) node[ocirc, label=$C$, label distance = 2pt] (C) {}
+		(xor) ++ (0, -2) node[ieeestd xnor port] (xnor) {}
+		(xnor.out) ++ (2, 1) node[ieeestd nand port] (or) {}
+
+    (or.out) node[ocirc, label=$Y$] (Y) {}
+		(Y) ++ (0, 1) node[ocirc, label=$Z$] (Z) {}
+
+		(xor.out) |- (Z)
+		(A) ++ (1.5, 0) |- (or.in 1)
+		(xnor.out) |- (or.in 2)
+		(xor.in 1) |- (A)
+		(xor.in 2) |- (B)
+		(C) |- (xnor.in 2)
+		(B) ++ (1, 0) |- (xnor.in 1)
+		;
+	\end{circuitikz}
+\end{center}
+
+Παρατηρούμε την σημαντική μείωση του υλικού που χρησιμοποιείται για την υλοποίηση του κυκλώματος, η οποία οφείλεται στην απλοποίηση των εξισώσεων Boole που αντιστοιχούν σε αυτό.
+
+\section{Πίνακας Αληθείας}
+Χρησιμοποιώντας τις εξισώσεις Boole μπορούμε να φτιάξουμε και τον πίνακα αληθείας των συναρτήσεων:
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|c|c|}
+		\hline \rule{0pt}{11pt} $A$ & $B$ & $C$ & $\bar{A}$ & $\overline{B \oplus C}$ & $Y = \overline{B \oplus C} + \bar{A}$ & $Z = A \oplus B$ \\
+		\hline 0                    & 0   & 0   & 1         & 1                       & 1                                     & 0                \\
+		0                           & 0   & 1   & 1         & 0                       & 1                                     & 0                \\
+		0                           & 1   & 0   & 1         & 0                       & 1                                     & 1                \\
+		0                           & 1   & 1   & 1         & 1                       & 1                                     & 1                \\
+		1                           & 0   & 0   & 0         & 1                       & 1                                     & 1                \\
+		1                           & 0   & 1   & 0         & 0                       & 0                                     & 1                \\
+		1                           & 1   & 0   & 0         & 0                       & 0                                     & 0                \\
+		1                           & 1   & 1   & 0         & 1                       & 1                                     & 0                \\
 		\hline
 	\end{tabular}
 \end{center}
