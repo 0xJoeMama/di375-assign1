@@ -30,21 +30,21 @@
 χρησιμοποιώντας τον να δημιουργήσουμε και να απλοποιήσουμε τις εξισώσεις Boole που προκύπτουν.
 \begin{center}
 	\begin{tabular}{ | c | c | c | c | c | }
-		\hline \rule{0pt}{11pt} $A$ & $B$ & $C$ & $Y$ & $m_i$                         \\
-		\hline \rule{0pt}{11pt} 0   & 0   & 0   & 0   & $\bar{A} * \bar{B} * \bar{C}$ \\
-		\rule{0pt}{11pt} 0          & 0   & 1   & 0   & $\bar{A} * \bar{B} * C$       \\
-		\rule{0pt}{11pt} 0          & 1   & 0   & 0   & $\bar{A} * B * \bar{C}$       \\
-		\rule{0pt}{11pt} 0          & 1   & 1   & 1   & $\bar{A} * B * C$             \\
-		\rule{0pt}{11pt} 1          & 0   & 0   & 0   & $A * \bar{B} * \bar{C}$       \\
-		\rule{0pt}{11pt} 1          & 0   & 1   & 1   & $A * \bar{B} * C$             \\
-		\rule{0pt}{11pt} 1          & 1   & 0   & 1   & $A * B * \bar{C}$             \\
-		\rule{0pt}{11pt} 1          & 1   & 1   & 1   & $A * B * C$                   \\
+		\hline $A$                & $B$ & $C$ & $Y$ & $m_i$                         \\
+		\hline \rule{0pt}{11pt} 0 & 0   & 0   & 0   & $\bar{A} * \bar{B} * \bar{C}$ \\
+		\rule{0pt}{11pt} 0        & 0   & 1   & 0   & $\bar{A} * \bar{B} * C$       \\
+		\rule{0pt}{11pt} 0        & 1   & 0   & 0   & $\bar{A} * B * \bar{C}$       \\
+		\rule{0pt}{11pt} 0        & 1   & 1   & 1   & $\bar{A} * B * C$             \\
+		\rule{0pt}{11pt} 1        & 0   & 0   & 0   & $A * \bar{B} * \bar{C}$       \\
+		\rule{0pt}{11pt} 1        & 0   & 1   & 1   & $A * \bar{B} * C$             \\
+		\rule{0pt}{11pt} 1        & 1   & 0   & 1   & $A * B * \bar{C}$             \\
+		\rule{0pt}{11pt} 1        & 1   & 1   & 1   & $A * B * C$                   \\
 		\hline
 	\end{tabular}
 \end{center}
 
 Από το παραπάνω προκύπτει ως άθροισμα γινομένων η παρακάτω εξίσωση για το $Y$:
-$$ Y = \bar{A} * B * C + A * \bar{B} * C + A * B * \bar{C} + A * B * C$$
+$$Y = \bar{A} * B * C + A * \bar{B} * C + A * B * \bar{C} + A * B * C$$
 
 Χρησιμοποιώντας τα θεωρήματα της άλγεβρας Boole, μπορούμε να απλοποιήσουμε το παραπάνω ως εξής:
 \begin{align*}
@@ -75,14 +75,26 @@ $$ Y = \bar{A} * B * C + A * \bar{B} * C + A * B * \bar{C} + A * B * C$$
 \section{RTL Analysis}
 Μπορούμε τώρα να κάνουμε RTL ανάλυση του παραπάνω κώδικα. Πατώντας 'Open Elaborated Design'
 προκύπτει το παρακάτω διάγραμμα:
-
 \begin{center}
-	\includegraphics[width=10cm]{rtl_new.png}
+	\includegraphics[width=10cm]{rtl_schem.png}
 \end{center}
 
 Το κύκλωμα αποτελείται δύο πύλες OR δύο εισόδων και 2 πύλες AND δύο εισόδων όπως περιμέναμε.
 
 \subsection{De Morgan side-quest}
+Η παραπάνω υλοποίηση χρησιμοποιεί τους εξής πόρους σε επίπεδο CMOS:
+\begin{center}
+	\begin{tabular}{| c | c |}
+		\hline Πύλη   & Αριθμός CMOS Transistors \\
+		\hline AND-2  & 4 + 2 = 6                \\
+		AND-2         & 6                        \\
+		OR-2          & 4 + 2 = 6                \\
+		OR-2          & 6                        \\
+		\hline Σύνολο & 6 + 6 + 6 + 6 = 24       \\
+		\hline
+	\end{tabular}
+\end{center}
+
 Μπορούμε επίσης να μειώσουμε τον αριθμό από CMOS transistors που χρησιμοποιούνται, εφαρμόζοντας κανόνες De Morgan στην εξίσωση ώστε να αλλάξουμε όσες πύλες γίνεται σε NOR και NAND:
 \begin{align*}
 	Y & = A * (B + C) + B * C                                  \\
@@ -123,7 +135,7 @@ $$ Y = \bar{A} * B * C + A * \bar{B} * C + A * B * \bar{C} + A * B * C$$
 Φυσικά όποια μορφή και να χρησιμοποιήσουμε, αφού τελικά το κύκλωμα μετατρέπεται σε lookup tables κατά την σύνθεση δεν θα υπάρξει κάποια διαφορά(εφόσον ο αριθμός των LUT μένει ίδιος και στα δύο Schematics).
 
 \section{Synthesis}
-Πλέον μπορούμε να κάνουμε σύνθεση και κάνοντάς την προκύπτει το παρακάτω διάγραμμα:
+Πλέον μπορούμε να κάνουμε σύνθεση και κάνοντάς την, προκύπτει το παρακάτω διάγραμμα:
 \begin{center}
 	\includegraphics[width=10cm]{synthesis_schem.png}
 \end{center}
@@ -133,7 +145,7 @@ $$ Y = \bar{A} * B * C + A * \bar{B} * C + A * B * \bar{C} + A * B * C$$
 ούνται επίσης 3 buffers για την ενίσχυση των σημάτων a, b και c πριν την είσοδό τους στο LUT καθώς κι ένα επιπλέον buffer για την ενίσχυση της εξόδου y.
 
 \section{Simulation}
-Για την προσομοίωση και τον έλεγχο της οντότητας majority υλοποιήθηκε και χρησιμοποιήθηκε η οντότητα majority\_tb με τον παρακάτω τρόπο:
+Για την προσομοίωση και τον έλεγχο της οντότητας majority χρησιμοποιήθηκε η οντότητα majority\_tb με η οποία υλοποιείται με τον παρακάτω τρόπο:
 \begin{minted}{vhdl}
 -- file majority_tb.vhd
 \end{minted}
